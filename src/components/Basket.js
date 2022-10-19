@@ -13,7 +13,8 @@ const Basket = ({products, onBasketToggle}) => {
             {productsInBasket.map(product => {
                 return(
                     <li key={product.id}>
-                        <button onClick={() => onBasketToggle(product.id)}>{product.title}</button>
+                        {product.title} | £{product.price} 
+                        <button onClick={() => onBasketToggle(product.id)}>Remove</button>
                     </li>
                 )
             })}
