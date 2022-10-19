@@ -1,4 +1,64 @@
 import React from "react";
+import styled from "styled-components";
+
+const BasketItem = styled.li`
+font-size: 1em;
+color: #4d2600;
+background-color: lightgrey;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-left: 1em;
+padding-right: 1em;
+`
+
+const Button = styled.button`
+font-size: 1em;
+border: 1px solid #e60000;
+background: #ff1a1a;
+max-height:30px;
+`
+
+const BasketHead = styled.h2`
+background-color: #00e6ac;
+padding: 0.8em;
+`
+
+const Total = styled.p`
+font-size:1.5em;
+background-color: #00e6ac;
+padding: 0.8em;
+`
+
+const DiscountCode = styled.input`
+font-size: 2em;
+border: 1px solid darkgrey;
+background: lightgrey;
+max-height:30px;
+padding: 0.3em;
+margin: 0.4em;
+`
+
+const CheckoutButton = styled.button`
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+	background-color:#b8e356;
+	border-radius:6px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #86ae47;
+    &:hover{background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+	        background-color:#a5cc52;}
+    &:active {position:relative;
+	        top:1px;}
+`
 
 const BasketDetail = ({products, onBasketToggle, checkoutBasket, handleChange, discountCode}) =>{
 
@@ -6,13 +66,15 @@ const BasketDetail = ({products, onBasketToggle, checkoutBasket, handleChange, d
 
     var totalCost = 0;
     var discountMultiplier = 1;
+    var discountMessage = "No Discount Code or Not Valid"
 
         const handleSubmit = (event) => {
             event.preventDefault();
         }
 
-        if(discountCode === "CODEBOY"){
+        if(discountCode.toLowerCase() === "codeboy"){
             discountMultiplier = 0.9;
+            discountMessage = "CODEBOY is Valid for 10% Off!"
         } 
 
 
@@ -22,33 +84,32 @@ const BasketDetail = ({products, onBasketToggle, checkoutBasket, handleChange, d
         
         <>
         
-        <h2> Basket </h2>
+        <BasketHead> Basket </BasketHead>
         <ul>
             {productsInBasket.map(product => {
                 totalCost = totalCost + product.price;
 
                 return(
-                    <li key={product.id}>
-                        <ul>
-                            <li>{product.title}</li>
-                            <li>£{product.price}</li>
-                            <li><img src={product.image} alt="" width="100" height="100"></img></li>
-                            <li>{product.description}</li>
-                            <li>{product.category}</li>
-                        </ul>
-                        <button onClick={() => onBasketToggle(product.id)}>Delete</button>
-                    </li>
+                    <BasketItem key={product.id}>
+                        
+                            {product.title}  |  £{product.price}
+                            <img src={product.image} alt="" width="100" height="100"></img>
+
+                
+                        <Button onClick={() => onBasketToggle(product.id)}>Delete</Button>
+                    </BasketItem>
                 )
             })}
         </ul>
 
         
-        <p>Total Cost: £ {totalCost * discountMultiplier}</p>
+        <Total>Total Cost: £ {totalCost * discountMultiplier}</Total>
+        {discountMessage}
         
         <form onSubmit={handleSubmit}>
-        <input type="text" name="discountCode" value={discountCode} placeholder="Discount code?" onChange={handleChange}></input>
+        <DiscountCode type="text" name="discountCode" value={discountCode} placeholder="Discount code?" onChange={handleChange}></DiscountCode>
         </form>
-        <button onClick={checkoutBasket}>Checkout</button>
+        <CheckoutButton onClick={checkoutBasket}>Checkout</CheckoutButton>
 
 
         </>

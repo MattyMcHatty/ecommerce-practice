@@ -11,7 +11,6 @@ function App() {
 
   const [products, setProducts] = useState([]);
   const [discountCode, setDiscountCode] = useState("");
-  // const [selectedProductID, setSelectedProductID] = useState("");
 
   useEffect(() => {
       getProducts()
@@ -23,9 +22,7 @@ function App() {
       .then(data => setProducts(data))
   }
 
-  // const productSelected = id => {
-  //     setSelectedProduct(id);
-  // }
+
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -46,8 +43,6 @@ function App() {
     })
     setProducts(updatedProducts)
   }
-
-  // const selectedProduct = products.find(product => product.id === selectedProductID)
 
   return (
     <div className="App">
