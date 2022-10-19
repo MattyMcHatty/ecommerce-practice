@@ -13,10 +13,29 @@ padding-right: 1em;
 `
 
 const Button = styled.button`
-font-size: 1em;
-border: 1px solid #e60000;
-background: #ff1a1a;
-max-height:30px;
+    box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color:#d0451b;
+	border-radius:8px;
+	border:2px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:10px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+
+&:hover {
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color:#bc3315;
+    color: black;
+}
+&:active {
+	position:relative;
+	top:1px;
+}
 `
 
 const BasketHead = styled.h2`
@@ -55,7 +74,9 @@ const CheckoutButton = styled.button`
 	text-decoration:none;
 	text-shadow:0px 1px 0px #86ae47;
     &:hover{background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
-	        background-color:#a5cc52;}
+	        background-color:#a5cc52;
+            color: black;
+        }
     &:active {position:relative;
 	        top:1px;}
 `
