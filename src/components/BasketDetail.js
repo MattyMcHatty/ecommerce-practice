@@ -81,11 +81,11 @@ const CheckoutButton = styled.button`
 	        top:1px;}
 `
 
-const BasketDetail = ({products, onBasketToggle, checkoutBasket, handleChange, discountCode}) =>{
+const BasketDetail = ({products, onBasketToggle, checkoutBasket, handleChange, discountCode, totalCost}) =>{
 
     const  productsInBasket = products.filter(product => product.isInBasket);
 
-    var totalCost = 0;
+    // var totalCost = 0;
     var discountMultiplier = 1;
     var discountMessage = "No Discount Code or Not Valid"
 

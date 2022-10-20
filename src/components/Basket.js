@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 const BasketItem = styled.li`
 font-size: 1em;
@@ -35,13 +37,20 @@ box-shadow:inset 0px 1px 0px 0px #cf866c;
 	top:1px;
 }
 `
-
-const BasketHead = styled.h2`
+const Total = styled.p`
+font-size:1.5em;
 background-color: #00e6ac;
 padding: 0.8em;
 `
 
-const Basket = ({products, onBasketToggle}) => {
+const BasketHead = styled.h2`
+background-color: #00e6ac;
+padding: 0.8em;
+a:visited {color: black}
+a:hover {color: #996600}
+`
+
+const Basket = ({products, onBasketToggle, totalCost}) => {
 
     const  productsInBasket = products.filter(product => product.isInBasket);
 
@@ -49,9 +58,11 @@ const Basket = ({products, onBasketToggle}) => {
 
         <>
         
-        <BasketHead> Basket </BasketHead>
+        <BasketHead> <Link to="/basket">Basket</Link> </BasketHead>
         <ul>
             {productsInBasket.map(product => {
+                totalCost = totalCost + product.price;
+
 
                 return(
                     <BasketItem key={product.id}>
@@ -60,11 +71,10 @@ const Basket = ({products, onBasketToggle}) => {
                     </BasketItem>
                 )
             })}
-            
-
-
 
         </ul>
+
+        <Total> Total Cost: £ {totalCost} </Total>
         
 
 

@@ -4,7 +4,7 @@ import ProductList from "../components/ProductList";
 import Basket from "../components/Basket";
 import './ProductContainer.css'
 
-const ProductContainer = ({products, HandleBasketToggle}) => {
+const ProductContainer = ({products, HandleBasketToggle, totalCost}) => {
 
     return(
         <>
@@ -12,7 +12,7 @@ const ProductContainer = ({products, HandleBasketToggle}) => {
             <ProductList products={products} onBasketToggle={HandleBasketToggle} />
         </main>
         <span>
-            <Basket products={products} onBasketToggle={HandleBasketToggle} />
+            <Basket products={products} onBasketToggle={HandleBasketToggle} totalCost={totalCost} />
         </span>
         </>
         

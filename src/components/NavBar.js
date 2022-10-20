@@ -6,10 +6,10 @@ const NavContainer = styled.ul`
 background: lightgray;
 display: flex;
 justify-content: space-evenly;
-padding: 3em;`
+padding: 2em;`
 
 const NavLinks = styled.li`
-font-size:1em;
+font-size:1.5em;
 a:visited {color: #996600}
 a:hover {color: black}
 

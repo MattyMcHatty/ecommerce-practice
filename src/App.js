@@ -12,6 +12,9 @@ function App() {
   const [products, setProducts] = useState([]);
   const [discountCode, setDiscountCode] = useState("");
 
+  var totalCost = 0;
+
+
   useEffect(() => {
       getProducts()
   }, [])
@@ -46,14 +49,14 @@ function App() {
 
   return (
     <div className="App">
-      <img src="https://img.freepik.com/premium-vector/vintage-clothing-store-logo-design-template-vector-illustration_500223-479.jpg?w=2000" alt="" height="200"></img>
+      <img className="shop-logo" src="https://cdn.shopify.com/s/files/1/1644/6687/files/007_store_logo_762a914a-736a-49dc-93ed-cb8490882f6c_1600x.png?v=1646933359" alt="" height="100"></img>
 
       <Router>
             <NavBar />
 
             <Routes>
-                <Route exact path="/" element={<ProductContainer products={products} HandleBasketToggle={HandleBasketToggle} />} />
-                <Route exact path="/basket" element={<BasketDetail products={products} onBasketToggle={HandleBasketToggle} checkoutBasket={checkoutBasket} handleChange={handleChange} discountCode={discountCode}/>} />
+                <Route exact path="/" element={<ProductContainer products={products} HandleBasketToggle={HandleBasketToggle} totalCost={totalCost} />} />
+                <Route exact path="/basket" element={<BasketDetail products={products} onBasketToggle={HandleBasketToggle} checkoutBasket={checkoutBasket} handleChange={handleChange} discountCode={discountCode} totalCost={totalCost}/>} />
             </Routes>
         </Router>
 
